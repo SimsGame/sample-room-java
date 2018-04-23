@@ -107,10 +107,10 @@ The example override file also demonstrates how to add your container to the Gam
 
 1. Go to `target/wlp/usr/server/gojava-room/apps/gojava-1.0-SNAPSHOT.war.xml` and copy the pathes after `sourceOnDisk`
     1. On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` by hand to something like `/opt/gojava-room/<generated source info>`
-2. Go to docker-compose.override.yml and replace the example pathes 
+2. Go to `docker-compose.override.yml` and replace the example pathes 
     1. In the docker-compose.override.yml volumes are written as `<path on local file system>:<path on Docker file system>`
     2. Only classes and webapp pathes have to be replaced
-    3. The <pathes on Docker file system> have to match the ones from `gojava-1.0-SNAPSHOT.war.xml`
+    3. The `<path on Docker file system>` have to match the ones from `gojava-1.0-SNAPSHOT.war.xml`
 
 Now when you run mvn compile or if your IDE recompiles your code Liberty will pick up the change.
 
