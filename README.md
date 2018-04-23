@@ -105,8 +105,8 @@ To run this in a Docker container we need to mount the `server` directory, `clas
 Use the `docker-compose.override.yml.example` file as a guide and create a `docker-compose.override.yml` that mounts a volume with the files required by the `war.xml` file. 
 The example override file also demonstrates how to add your container to the Game On Docker network so it can be accessed locally.
 
-1. Go to `target/wlp/usr/server/gojava-room/apps/gojava-1.0-SNAPSHOT.war.xml` and copy the pathes after `sourceOnDisk`
-    1. On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` by hand to something like `/opt/gojava-room/<generated source info>`
+1. Open `gojava-1.0-SNAPSHOT.war.xml` in a text editor and copy the pathes after `sourceOnDisk`
+    1. On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` to something like `/opt/gojava-room/<generated source info>` by hand
 2. Go to `docker-compose.override.yml` and replace the example pathes 
     1. In the docker-compose.override.yml volumes are written as `<path on local file system>:<path on Docker file system>`
     2. Only classes and webapp pathes have to be replaced
