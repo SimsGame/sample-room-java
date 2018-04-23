@@ -106,11 +106,11 @@ Use the `docker-compose.override.yml.example` file as a guide and create a `dock
 The example override file also demonstrates how to add your container to the Game On Docker network so it can be accessed locally.
 
 1. Open `gojava-1.0-SNAPSHOT.war.xml` in a text editor and copy the pathes after `sourceOnDisk`
-    1. On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` to something like `/opt/gojava-room/<generated source info>` by hand
+    1. On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` to something like "/opt/gojava-room/<generated source info>" by hand
 2. Go to `docker-compose.override.yml` and replace the example pathes 
     1. In the docker-compose.override.yml volumes are written as `<path on local file system>:<path on Docker file system>`
     2. Only classes and webapp pathes have to be replaced
-    3. The `<path on Docker file system>` have to match the ones from `gojava-1.0-SNAPSHOT.war.xml`
+    3. The \<path on Docker file system> have to match the ones from gojava-1.0-SNAPSHOT.war.xml
 
 Now when you run mvn compile or if your IDE recompiles your code Liberty will pick up the change.
 
@@ -122,7 +122,7 @@ This project is built using Maven and makes use of the [Liberty Maven plugin](ht
 
 ### Server feature definitions
 
-For those of you familiar with the Liberty server configuration you will know that features are enabled in the server by adding a <featureManager/> element to the server.xml. For this project the <featureManager/> is provided by snippets from the [Liberty app accelerator](http://liberty-app-accelerator.wasdev.developer.ibm.com/start/). This means that there is no <featureManager/> element in the [server.xml](src/main/liberty/config/server.xml) file. When the build is run these will appear in the server's configDropins/defaults directory.
+For those of you familiar with the Liberty server configuration you will know that features are enabled in the server by adding a \<featureManager/> element to the server.xml. For this project the \<featureManager/> is provided by snippets from the [Liberty app accelerator](http://liberty-app-accelerator.wasdev.developer.ibm.com/start/). This means that there is no \<featureManager/> element in the [server.xml](src/main/liberty/config/server.xml) file. When the build is run these will appear in the server's configDropins/defaults directory.
 
 ### Testing
 
@@ -130,6 +130,7 @@ You can write two types of tests: unit and integration tests.  The unit tests wi
 1. Start a Liberty server
 2. Use the maven-failsafe-plugin to run any tests that have packages that include "it" in their names
 3. Stop the Liberty server
+
 As integration tests are longer running they can be skipped by providing the skipTests flag: `mvn install -DskipTests`.
 
 ### Code Coverage
