@@ -97,13 +97,22 @@ Remember our https://gameontext.org/#/terms. Most importantly, there are kids ar
 
 ## Running the app with hot-reload
 
-Since this walkthrough is running on WebSphere Liberty we can set the app up for development without restarting the container. 
+Since this walkthrough is running on WebSphere Liberty we can set the app up for development without restarting the container.
 
-First build the app with `mvn clean install -P looseApp`. This will create a `gojava-1.0-SNAPSHOT.war.xml` file in `target/wlp/usr/server/gojava-room/apps` rather than a packaged war. Now when you run `mvn compile` or if your IDE recompiles your code Liberty will pick up the change.
+First build the app with `mvn clean install -P looseApp`. This will create a `gojava-1.0-SNAPSHOT.war.xml` file in `target/wlp/usr/server/gojava-room/apps` rather than a packaged war.
 
-To run this in a Docker container we need to mount the `classes` directory, `server` directory and `webapp` directory as volumes so the container will pick up the changes without needing a rebuild.
+To run this in a Docker container we need to mount the server directory, classes directory and webapp directory as volumes so the container will pick up the changes without needing a rebuild.
+Use the docker-compose.override.yml.example file as a guide and create a docker-compose.override.yml that mounts a volume with the files required by the war.xml file. 
+The example override file also demonstrates how to add your container to the Game On Docker network so it can be accessed locally.
 
-Use the `docker-compose.override.yml.example` file as a guide and create a `docker-compose.override.yml` that mounts a volume with the files required by the `war.xml` file. The example override file also demonstrates how to add your container to the Game On Docker network so it can be accessed locally.
+1. Go to `target/wlp/usr/server/gojava-room/apps/gojava-1.0-SNAPSHOT.war.xml` and copy the pathes after `sourceOnDisk`
+  1.1 On Windows: `C:/...` does not work in the Docker container. Change the path after `sourceOnDisk` by hand to `/opt/gojava-room/<generated source info>`
+2. Go to docker-compose.override.yml and replace the example pathes 
+  2.1 In the docker-compose.override.yml volumes are written as `<path on local file system>:<path on Docker file system>`
+  2.2 Only classes and webapp pathes have to be replaced
+  2.3 The <pathes on Docker file system> have to match the ones from `gojava-1.0-SNAPSHOT.war.xml`
+
+Now when you run mvn compile or if your IDE recompiles your code Liberty will pick up the change.
 
  See the [Advanced Adventure for local development with Docker](https://book.gameontext.org/walkthroughs/local-docker.html) for a more detailed walkthrough.
 
